@@ -2,71 +2,74 @@ package com.JavaMart.OOP_javaMart;
 
 public class PosDTO {
 
-    private int milk;
-    private int noodle;
-    private int gum;
-    private int chocolate;
-    private String pName;
+//    private int milk;       // 우유
+//    private int noodle;     // 라면
+//    private int gum;        // 껌
+//    private int chocolate;      // 초콜릿
+//    private int water;      // 물
+
+    private int num = 0;      // 품목 번호
+    private String name;        // 품목
+    private int quantity;       // 수량
+    private int price;      // 가격
+    private int sales;      // 매출
+
 
     public PosDTO() {
     }
 
-    public PosDTO(int milk, int noodle, int gum, int chocolate, String pName) {
-        this.milk = milk;
-        this.noodle = noodle;
-        this.gum = gum;
-        this.chocolate = chocolate;
-        this.pName = pName;
+    public PosDTO(int num, String name, int quantity, int price) {
+        this.num = num;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
     }
 
-    public int getMilk() {
-        return milk;
+    public int getNum() {
+        return num;
     }
 
-    public void setMilk(int milk) {
-        this.milk = milk;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public int getNoodle() {
-        return noodle;
+    public String getName() {
+        return name;
     }
 
-    public void setNoodle(int noodle) {
-        this.noodle = noodle;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getGum() {
-        return gum;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setGum(int gum) {
-        this.gum = gum;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getChocolate() {
-        return chocolate;
+    public int getPrice() {
+        return price;
     }
 
-    public void setChocolate(int chocolate) {
-        this.chocolate = chocolate;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public String getpName() {
-        return pName;
+    public int getSales() {
+        return sales;
     }
 
-    public void setpName(String pName) {
-        this.pName = pName;
+    public void setSales(int sales) {
+        this.sales = sales;
     }
 
-    @Override
-    public String toString() {
-        return "PosDTO{" +
-                "milk=" + milk +
-                ", noodle=" + noodle +
-                ", gum=" + gum +
-                ", chocolate=" + chocolate +
-                ", pName='" + pName + '\'' +
-                '}';
+    public String information() {
+        return
+                "품목 " + num + ". " + name + '\n' +
+                "수량 : " + quantity + '\n' +
+                "가격 : " + price + '\n' +
+                "매출 : " + sales + '\n';
     }
 }
