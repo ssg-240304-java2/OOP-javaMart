@@ -1,6 +1,7 @@
-package com.JavaMart.OOP_javaMart;
+package com.JavaMart.OOP_javaMart.controller;
 
-import java.util.Date;
+import com.JavaMart.OOP_javaMart.dto.PosDTO;
+
 import java.util.Scanner;
 
 public class PosMenu {
@@ -11,18 +12,23 @@ public class PosMenu {
 
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
-        poss[0] = new PosDTO(new Date(),1,"우유",5,4000);
-        poss[1] = new PosDTO(new Date(),2,"라면",5,5000);
-        poss[2] = new PosDTO(new Date(),3,"껌",5,2000);
-        poss[3] = new PosDTO(new Date(),4,"초콜릿",5,2000);
-        poss[4] = new PosDTO(new Date(),5,"물",5,3000);
+        poss[0] = new PosDTO(1,"우유",5,4000);
+        poss[1] = new PosDTO(2,"라면",5,5000);
+        poss[2] = new PosDTO(3,"껌",5,2000);
+        poss[3] = new PosDTO(4,"초콜릿",5,2000);
+        poss[4] = new PosDTO(5,"물",5,3000);
     }
-
+    int milkSale;
+    int noodleSale;
+    int gumSale;
+    int chocolateSale;
+    int waterSale;
 
     Scanner sc = new Scanner(System.in);
 
     public void menu(){     // 메뉴
         while(true){
+            System.out.println("-----포스기------");
             System.out.println("1.재고 출력");
             System.out.println("2.재고 수정");
             System.out.println("3.매출 출력");
@@ -34,10 +40,27 @@ public class PosMenu {
                     printStorage();
                     break;
                 case 2:
-                    System.out.println("손님이 구매한 수량은 : " + editStorage());
+                    System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
+                    System.out.print("손님이 무슨 물품을 구매했습니까 : ");
+                    int choicePro = sc.nextInt();
+                    if (choicePro == 1){
+                        milkSale = salesByCustomer(); //우유 매출
+                    }
+                    if (choicePro == 2) {
+                        noodleSale = salesByCustomer(); //라면 매출
+                    }
+                    if (choicePro == 3) {
+                        gumSale = salesByCustomer(); //검매출
+                    }
+                    if (choicePro == 4){
+                        chocolateSale = salesByCustomer(); //초콜릿 매출
+                    }
+                    if (choicePro == 5){
+                        waterSale = salesByCustomer(); //물 매출
+                    }
                     break;
                 case 3:
-                    calculateProductRevenue();
+                    System.out.println(milkSale);
                     break;
                 case 9:
                     System.out.println("프로그램 종료");
@@ -46,22 +69,22 @@ public class PosMenu {
         }
 
     }
-    public String editStorage(){        // 재고 안에서 손님이 구매한 품목 수량 도출.
-        System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
-        System.out.print("손님이 무슨 물건을 구매했습니까 : ");
-        int Num1 = sc.nextInt();
-
+    public int salesByCustomer(){        // 재고 안에서 손님이 구매한 품목 수량 도출.
+//        System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
+//        System.out.print("손님이 무슨 물건을 구매했습니까 : ");
+//        int Num1 = sc.nextInt();
         System.out.print("얼마나 구매했나요 : ");
         int qutantity = sc.nextInt();
-        int result = 0;
+        int result;
 
         if (qutantity > 5){
             System.out.println("수량을 벗어난 구매입니다.");
-            return ("번호 " + Num1 + " 의 품목을 " + result + "개 구매했습니다");
+            result = 0;
         }
         else{
-            return ("번호 "+  Num1 + " 의 품목을 " + qutantity + "개 구매했습니다");
+            result = qutantity;
         }
+        return result;
     }
 
     public int calculateProductRevenue(){     // 물건 매출 계산
@@ -69,9 +92,7 @@ public class PosMenu {
         //첫번째 숫자는 char는 품목이고 두번째 숫자는 품목이 팔린 내용입니다.
         //첫번째 숫자에 해당하는 품목의 가격을 뽑아내고
         //두번째 숫자와 가격과 곱하기 해서 그값을 리턴해준다.
-
-
-        return editStorage().charAt(11);
+        return 0;
     }
 
     public void showTheProduct(){      // 물건 개수 및 매출 출력
