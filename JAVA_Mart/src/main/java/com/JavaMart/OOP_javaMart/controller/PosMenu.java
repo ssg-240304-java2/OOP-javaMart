@@ -2,14 +2,13 @@ package com.JavaMart.OOP_javaMart.controller;
 
 import com.JavaMart.OOP_javaMart.dto.PosDTO;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class PosMenu {
 
     PosDTO posDTO = new PosDTO();
     PosDTO[] poss = new PosDTO[5];      // 배열 생성 및 할당
-    PosDTO[] poss1 = new PosDTO[5];
-
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
         poss[0] = new PosDTO(1,"우유",5,4000);
@@ -18,11 +17,22 @@ public class PosMenu {
         poss[3] = new PosDTO(4,"초콜릿",5,2000);
         poss[4] = new PosDTO(5,"물",5,3000);
     }
+
+    // 품목별 판매된 수량
     int milkSale;
     int noodleSale;
     int gumSale;
     int chocolateSale;
     int waterSale;
+
+
+    // 각 품목의 총 매출
+    int totalMilkSale;
+    int totalNoodleSale;
+    int totalGumSale;
+    int totalChocolateSale;
+    int totalWaterSale;
+
 
     Scanner sc = new Scanner(System.in);
 
@@ -60,7 +70,7 @@ public class PosMenu {
                     }
                     break;
                 case 3:
-                    System.out.println(milkSale);
+                    showTheProduct();
                     break;
                 case 9:
                     System.out.println("프로그램 종료");
@@ -87,16 +97,20 @@ public class PosMenu {
         return result;
     }
 
-    public int calculateProductRevenue(){     // 물건 매출 계산
-        //먼저 위에 메소드에서 나온 스트링을 charat을 이용해서 슬라이싱을 해준다.
-        //첫번째 숫자는 char는 품목이고 두번째 숫자는 품목이 팔린 내용입니다.
-        //첫번째 숫자에 해당하는 품목의 가격을 뽑아내고
-        //두번째 숫자와 가격과 곱하기 해서 그값을 리턴해준다.
-        return 0;
+    public void calculateProductRevenue(){     // 물건 매출 계산
+        totalMilkSale = poss[0].getPrice() * milkSale;
+        totalNoodleSale = poss[1].getPrice() * noodleSale;
+        totalGumSale = poss[2].getPrice() * gumSale;
+        totalChocolateSale = poss[3].getPrice() * chocolateSale;
+        totalWaterSale = poss[4].getPrice() * waterSale;
     }
 
-    public void showTheProduct(){      // 물건 개수 및 매출 출력
-
+    public void showTheProduct(){  // 물건 개수 및 매출 출력
+        System.out.println(posDTO.getRevenueDate() + "밀크의 판매수량은 " + milkSale +  "개 이고, 매출은 " + totalMilkSale + "원입니다.");
+        System.out.println(posDTO.getRevenueDate() + "라면의 판매수량은 " + noodleSale +  "개 이고, 매출은 " + totalNoodleSale + "원입니다.");
+        System.out.println(posDTO.getRevenueDate() + "껌의 판매수량은 " + gumSale +  "개 이고, 매출은 " + totalGumSale + "원입니다.");
+        System.out.println(posDTO.getRevenueDate() + "초콜릿의 판매수량은 " + chocolateSale +  "개 이고, 매출은 " + totalChocolateSale + "원입니다.");
+        System.out.println(posDTO.getRevenueDate() + "물의 판매수량은 " + waterSale +  "개 이고, 매출은 " + totalWaterSale + "원입니다.");
     }
 
     public void printStorage(){       // 전체 결과 출력

@@ -12,6 +12,10 @@ public class PosDTO {
 
     private int num = 0;      // 품목 번호
 
+    public Date getRevenueDate() {
+        return revenueDate;
+    }
+
     private Date revenueDate;
     private String name;        // 품목
     private int quantity;       // 수량
