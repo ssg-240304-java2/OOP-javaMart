@@ -1,4 +1,6 @@
-package com.JavaMart.OOP_javaMart;
+package com.JavaMart.OOP_javaMart.run;
+
+import com.JavaMart.OOP_javaMart.controller.PosMenu;
 
 public class Application {
 
