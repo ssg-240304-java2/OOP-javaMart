@@ -1,5 +1,7 @@
 package com.JavaMart.OOP_javaMart;
 
+import java.util.Date;
+
 public class PosDTO {
 
 //    private int milk;       // 우유
@@ -9,6 +11,8 @@ public class PosDTO {
 //    private int water;      // 물
 
     private int num = 0;      // 품목 번호
+
+    private Date revenueDate;
     private String name;        // 품목
     private int quantity;       // 수량
     private int price;      // 가격
@@ -18,7 +22,8 @@ public class PosDTO {
     public PosDTO() {
     }
 
-    public PosDTO(int num, String name, int quantity, int price) {
+    public PosDTO(Date revenueDate, int num, String name, int quantity, int price) {
+        this.revenueDate = revenueDate;
         this.num = num;
         this.name = name;
         this.quantity = quantity;
@@ -67,7 +72,8 @@ public class PosDTO {
 
     public String information() {
         return
-                "품목 " + num + ". " + name + '\n' +
+                "날짜 : " + revenueDate + '\n' +
+                "품목 : " + num + ". " + name + '\n' +
                 "수량 : " + quantity + '\n' +
                 "가격 : " + price + '\n' +
                 "매출 : " + sales + '\n';

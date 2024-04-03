@@ -1,5 +1,6 @@
 package com.JavaMart.OOP_javaMart;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class PosMenu {
@@ -10,11 +11,11 @@ public class PosMenu {
 
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
-        poss[0] = new PosDTO(1,"우유",5,4000);
-        poss[1] = new PosDTO(2,"라면",5,5000);
-        poss[2] = new PosDTO(3,"껌",5,2000);
-        poss[3] = new PosDTO(4,"초콜릿",5,2000);
-        poss[4] = new PosDTO(5,"물",5,3000);
+        poss[0] = new PosDTO(new Date(),1,"우유",5,4000);
+        poss[1] = new PosDTO(new Date(),2,"라면",5,5000);
+        poss[2] = new PosDTO(new Date(),3,"껌",5,2000);
+        poss[3] = new PosDTO(new Date(),4,"초콜릿",5,2000);
+        poss[4] = new PosDTO(new Date(),5,"물",5,3000);
     }
 
 
@@ -33,11 +34,10 @@ public class PosMenu {
                     printStorage();
                     break;
                 case 2:
-                    editStorage();
-                    edditedprintStorage();
+                    System.out.println("손님이 구매한 수량은 : " + editStorage());
                     break;
                 case 3:
-                    showTheProduct();
+                    calculateProductRevenue();
                     break;
                 case 9:
                     System.out.println("프로그램 종료");
@@ -46,32 +46,32 @@ public class PosMenu {
         }
 
     }
+    public String editStorage(){        // 재고 안에서 손님이 구매한 품목 수량 도출.
+        System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
+        System.out.print("손님이 무슨 물건을 구매했습니까 : ");
+        int Num1 = sc.nextInt();
 
-    public void editStorage(){        // 배열 복사뒤 재고 수정
-        System.out.println("0 : 우유, 1 : 라면, 2 : 껌, 3 : 초콜릿, 4 : 물");
-        System.out.print("어떤 물품의 재고를 수정하실건가요 : ");
-        int product = sc.nextInt();
-        System.out.print("얼마나 물품이 남았나요 : ");
+        System.out.print("얼마나 구매했나요 : ");
         int qutantity = sc.nextInt();
-        
-        poss1[0] = new PosDTO();
-        poss1[1] = new PosDTO();
-        poss1[2] = new PosDTO();
-        poss1[3] = new PosDTO();
-        poss1[4] = new PosDTO();
+        int result = 0;
 
-        for (int i = 0; i < poss.length; i++) {
-            poss1[i].setNum(poss[i].getNum());
-            poss1[i].setName(poss[i].getName());
-            poss1[i].setQuantity(poss[i].getQuantity());
-            poss1[i].setPrice(poss[i].getPrice());
+        if (qutantity > 5){
+            System.out.println("수량을 벗어난 구매입니다.");
+            return ("번호 " + Num1 + " 의 품목을 " + result + "개 구매했습니다");
         }
-        poss1[product].setQuantity(qutantity);
-
+        else{
+            return ("번호 "+  Num1 + " 의 품목을 " + qutantity + "개 구매했습니다");
+        }
     }
 
     public int calculateProductRevenue(){     // 물건 매출 계산
-        return 0;
+        //먼저 위에 메소드에서 나온 스트링을 charat을 이용해서 슬라이싱을 해준다.
+        //첫번째 숫자는 char는 품목이고 두번째 숫자는 품목이 팔린 내용입니다.
+        //첫번째 숫자에 해당하는 품목의 가격을 뽑아내고
+        //두번째 숫자와 가격과 곱하기 해서 그값을 리턴해준다.
+
+
+        return editStorage().charAt(11);
     }
 
     public void showTheProduct(){      // 물건 개수 및 매출 출력
@@ -89,19 +89,4 @@ public class PosMenu {
         System.out.println("🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜");
 
     }
-
-    public void edditedprintStorage(){       // 수정된 제고 출력
-
-        System.out.println("🟦⬜🟦⬜🟦⬜🟦⬜JAVA_MART🟦⬜🟦⬜🟦⬜🟦⬜");
-        for(int i = 0; i < poss1.length; i++){
-            if(poss1[i] != null){
-                System.out.println(poss1[i].information());
-            }
-        }
-        System.out.println("🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜🟦⬜");
-
-    }
-
-
-
 }
