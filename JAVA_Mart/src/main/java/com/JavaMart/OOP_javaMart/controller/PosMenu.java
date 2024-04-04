@@ -2,37 +2,33 @@ package com.JavaMart.OOP_javaMart.controller;
 
 import com.JavaMart.OOP_javaMart.dto.PosDTO;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class PosMenu {
 
     PosDTO posDTO = new PosDTO();
     PosDTO[] poss = new PosDTO[5];      // 배열 생성 및 할당
+    PosDTO[] poss1 = new PosDTO[5];
+
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
-        poss[0] = new PosDTO(1,"우유",5,4000);
-        poss[1] = new PosDTO(2,"라면",5,5000);
-        poss[2] = new PosDTO(3,"껌",5,2000);
-        poss[3] = new PosDTO(4,"초콜릿",5,2000);
-        poss[4] = new PosDTO(5,"물",5,3000);
+        poss[0] = new PosDTO(1,"우유",5,4000,0);
+        poss[1] = new PosDTO(2,"라면",5,5000,0);
+        poss[2] = new PosDTO(3,"껌",5,2000,0);
+        poss[3] = new PosDTO(4,"초콜릿",5,2000,0);
+        poss[4] = new PosDTO(5,"물",5,3000,0);
     }
-
-    // 품목별 판매된 수량
     int milkSale;
     int noodleSale;
     int gumSale;
     int chocolateSale;
     int waterSale;
 
-
-    // 각 품목의 총 매출
-    int totalMilkSale;
-    int totalNoodleSale;
-    int totalGumSale;
-    int totalChocolateSale;
-    int totalWaterSale;
-
+    int totalMilksale;
+    int totalNoodlesale;
+    int totalGumsale;
+    int totalChocolatesale;
+    int totalWatersale;
 
     Scanner sc = new Scanner(System.in);
 
@@ -98,19 +94,26 @@ public class PosMenu {
     }
 
     public void calculateProductRevenue(){     // 물건 매출 계산
-        totalMilkSale = poss[0].getPrice() * milkSale;
-        totalNoodleSale = poss[1].getPrice() * noodleSale;
-        totalGumSale = poss[2].getPrice() * gumSale;
-        totalChocolateSale = poss[3].getPrice() * chocolateSale;
-        totalWaterSale = poss[4].getPrice() * waterSale;
+        totalMilksale = poss[0].getPrice() * milkSale;
+        totalNoodlesale = poss[1].getPrice() * noodleSale;
+        totalGumsale = poss[2].getPrice() * gumSale;
+        totalChocolatesale = poss[3].getPrice() * chocolateSale;
+        totalWatersale = poss[4].getPrice() * waterSale;
     }
 
-    public void showTheProduct(){  // 물건 개수 및 매출 출력
-        System.out.println(posDTO.getRevenueDate() + "밀크의 판매수량은 " + milkSale +  "개 이고, 매출은 " + totalMilkSale + "원입니다.");
-        System.out.println(posDTO.getRevenueDate() + "라면의 판매수량은 " + noodleSale +  "개 이고, 매출은 " + totalNoodleSale + "원입니다.");
-        System.out.println(posDTO.getRevenueDate() + "껌의 판매수량은 " + gumSale +  "개 이고, 매출은 " + totalGumSale + "원입니다.");
-        System.out.println(posDTO.getRevenueDate() + "초콜릿의 판매수량은 " + chocolateSale +  "개 이고, 매출은 " + totalChocolateSale + "원입니다.");
-        System.out.println(posDTO.getRevenueDate() + "물의 판매수량은 " + waterSale +  "개 이고, 매출은 " + totalWaterSale + "원입니다.");
+    public void showTheProduct(){      // 물건 개수 및 매출 출력
+        //setter를 이용하여 매출 계산한 값을 넣고 getter로 갖고오기
+        poss[0].setSales(poss[0].getPrice() * milkSale);
+        poss[1].setSales(poss[1].getPrice() * noodleSale);
+        poss[2].setSales(poss[2].getPrice() * gumSale);
+        poss[3].setSales(poss[3].getPrice() * chocolateSale);
+        poss[4].setSales(poss[4].getPrice() * waterSale);
+        System.out.println(poss[0].getSales());
+        System.out.println(poss[1].getSales());
+        System.out.println(poss[2].getSales());
+        System.out.println(poss[3].getSales());
+        System.out.println(poss[4].getSales());
+
     }
 
     public void printStorage(){       // 전체 결과 출력
