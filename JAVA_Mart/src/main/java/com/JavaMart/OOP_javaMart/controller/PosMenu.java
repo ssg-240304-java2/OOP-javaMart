@@ -52,20 +52,24 @@ public class PosMenu {
                     String quantityStr = sc.next(); //24
                     for (int i = 0; i < choicePro.length(); i++) { // 우유 라면 (12) // 24
                         int quantity = quantityStr.charAt(i) - '0';
-                        if (choicePro.charAt(i) == '1'){
-                            milkSale = quantity;
-                        }
-                        if(choicePro.charAt(i) == '2') {
-                            noodleSale = quantity;
-                        }
-                        if(choicePro.charAt(i) == '3') {
-                            gumSale = quantity;
-                        }
-                        if(choicePro.charAt(i) == '4') {
-                            chocolateSale = quantity;
-                        }
-                        if(choicePro.charAt(i) == '5') {
-                            waterSale = quantity;
+                        if(quantity<5){
+                            if (choicePro.charAt(i) == '1'){
+                                milkSale = quantity;
+                            }
+                            if(choicePro.charAt(i) == '2') {
+                                noodleSale = quantity;
+                            }
+                            if(choicePro.charAt(i) == '3') {
+                                gumSale = quantity;
+                            }
+                            if(choicePro.charAt(i) == '4') {
+                                chocolateSale = quantity;
+                            }
+                            if(choicePro.charAt(i) == '5') {
+                                waterSale = quantity;
+                            }
+                        } else{
+                            System.out.println("구매할 수량을 초과했습니다.");
                         }
                     }
                     System.out.println(milkSale);
@@ -84,7 +88,6 @@ public class PosMenu {
                     return;
             }
         }
-
     }
     public void calculateProductRevenue(){     // 물건 매출 계산
         totalMilksale = poss[0].getPrice() * milkSale;
@@ -101,14 +104,13 @@ public class PosMenu {
         poss[2].setSales(totalGumsale);
         poss[3].setSales(totalChocolatesale);
         poss[4].setSales(totalWatersale);
-
-        System.out.println(poss[0].getSales());
-        System.out.println(poss[1].getSales());
-        System.out.println(poss[2].getSales());
-        System.out.println(poss[3].getSales());
-        System.out.println(poss[4].getSales());
-
+        for(int i=0; i<poss.length; i++){
+            if(poss[i].getSales() != 0){
+                System.out.println("팔린 "+poss[i].getName() + "의 개수 : " + poss[i].getQuantity() + "개  해당 품목 매출 : " +poss[i].getSales() + "원");
+            }
+        }
     }
+    
 
     public void printStorage(){       // 전체 결과 출력
 
