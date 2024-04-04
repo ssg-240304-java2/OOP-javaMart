@@ -84,30 +84,45 @@ public class PosMenu {
         poss[2].setSales(totalGumsale);
         poss[3].setSales(totalChocolatesale);
         poss[4].setSales(totalWatersale);
-        for(int i=0; i<poss.length; i++){
+
+
+        for(int i = 0; i < poss.length; i++){
+
+
+
             if(poss[i].getSales() != 0){
-                System.out.println("팔린 "+poss[i].getName() + "의 개수 : " + poss[i].getQuantity() + "개  해당 품목 매출 : " +poss[i].getSales() + "원");
+                System.out.println("팔린 "+ poss[i].getName() + "의 개수 : " + (5 - poss[i].getQuantity()) + "개 해당 품목 매출 : " + poss[i].getSales() + "원");
             }
         }
     }
     public void ProductSales(String choicePro, String quantityStr) {
-        for (int i = 0; i <  choicePro.length(); i++) { // 우유 라면 (12) // 24
+        for (int i = 0; i <  choicePro.length(); i++) {         // 우유 라면 (12) // 24
             int quantity = quantityStr.charAt(i) - '0';
-            if(quantity<5) {
+            if(quantity < 5) {
                 if (choicePro.charAt(i) == '1') {
                     milkSale = quantity;
+                    poss[0].setQuantity(poss[0].getQuantity() - milkSale);
+                    poss[0].setSales(milkSale);
                 }
                 if (choicePro.charAt(i) == '2') {
                     noodleSale = quantity;
+                    poss[1].setQuantity(poss[1].getQuantity() - noodleSale);
+                    poss[1].setSales(noodleSale);
                 }
                 if (choicePro.charAt(i) == '3') {
                     gumSale = quantity;
+                    poss[2].setQuantity(poss[2].getQuantity() - gumSale);
+                    poss[2].setSales(gumSale);
                 }
                 if (choicePro.charAt(i) == '4') {
                     chocolateSale = quantity;
+                    poss[3].setQuantity(poss[3].getQuantity() - chocolateSale);
+                    poss[3].setSales(chocolateSale);
                 }
                 if (choicePro.charAt(i) == '5') {
                     waterSale = quantity;
+                    poss[4].setQuantity(poss[4].getQuantity() - waterSale);
+                    poss[4].setSales(waterSale);
                 }
             }
             else{
