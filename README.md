@@ -14,7 +14,7 @@ JAVA의 컬렉션(Collection)을 이용하여 만든 편의점 재고관리 프�
 - 팀원2 : 김의진(dmlwls12) - 
 - 팀원3 : 송재혁(speter6501) -
 - 팀원4 : 고유진(yujin4sth00) -
-- 팀원5 : 장윤지(elliaaa) -
+- 팀원5 : 장윤지(elliaaa) -생성자, getter setter, to string, pos 배열 생성
 
 ### ⚙️ 개발 환경
 - ``` Java 17 ```
