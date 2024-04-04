@@ -8,7 +8,6 @@ public class PosMenu {
 
     PosDTO posDTO = new PosDTO();
     PosDTO[] poss = new PosDTO[5];      // 배열 생성 및 할당
-    PosDTO[] poss1 = new PosDTO[5];
 
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
@@ -48,24 +47,36 @@ public class PosMenu {
                 case 2:
                     System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
                     System.out.print("손님이 무슨 물품을 구매했습니까 : ");
-                    int choicePro = sc.nextInt();
-                    if (choicePro == 1){
-                        milkSale = salesByCustomer(); //우유 매출
+                    String choicePro = sc.next(); // 12
+                    System.out.print("몇 개 구매했나요 : ");
+                    String quantityStr = sc.next(); //24
+                    for (int i = 0; i < choicePro.length(); i++) { // 우유 라면 (12) // 24
+                        int quantity = quantityStr.charAt(i) - '0';
+                        if (choicePro.charAt(i) == '1'){
+                            milkSale = quantity;
+                        }
+                        if(choicePro.charAt(i) == '2') {
+                            noodleSale = quantity;
+                        }
+                        if(choicePro.charAt(i) == '3') {
+                            gumSale = quantity;
+                        }
+                        if(choicePro.charAt(i) == '4') {
+                            chocolateSale = quantity;
+                        }
+                        if(choicePro.charAt(i) == '5') {
+                            waterSale = quantity;
+                        }
                     }
-                    if (choicePro == 2) {
-                        noodleSale = salesByCustomer(); //라면 매출
-                    }
-                    if (choicePro == 3) {
-                        gumSale = salesByCustomer(); //검매출
-                    }
-                    if (choicePro == 4){
-                        chocolateSale = salesByCustomer(); //초콜릿 매출
-                    }
-                    if (choicePro == 5){
-                        waterSale = salesByCustomer(); //물 매출
-                    }
+                    System.out.println(milkSale);
+                    System.out.println(noodleSale);
+                    System.out.println(gumSale);
+                    System.out.println(chocolateSale);
+                    System.out.println(waterSale);
                     break;
+
                 case 3:
+                    calculateProductRevenue();
                     showTheProduct();
                     break;
                 case 9:
@@ -75,24 +86,6 @@ public class PosMenu {
         }
 
     }
-    public int salesByCustomer(){        // 재고 안에서 손님이 구매한 품목 수량 도출.
-//        System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
-//        System.out.print("손님이 무슨 물건을 구매했습니까 : ");
-//        int Num1 = sc.nextInt();
-        System.out.print("얼마나 구매했나요 : ");
-        int qutantity = sc.nextInt();
-        int result;
-
-        if (qutantity > 5){
-            System.out.println("수량을 벗어난 구매입니다.");
-            result = 0;
-        }
-        else{
-            result = qutantity;
-        }
-        return result;
-    }
-
     public void calculateProductRevenue(){     // 물건 매출 계산
         totalMilksale = poss[0].getPrice() * milkSale;
         totalNoodlesale = poss[1].getPrice() * noodleSale;
@@ -103,11 +96,12 @@ public class PosMenu {
 
     public void showTheProduct(){      // 물건 개수 및 매출 출력
         //setter를 이용하여 매출 계산한 값을 넣고 getter로 갖고오기
-        poss[0].setSales(poss[0].getPrice() * milkSale);
-        poss[1].setSales(poss[1].getPrice() * noodleSale);
-        poss[2].setSales(poss[2].getPrice() * gumSale);
-        poss[3].setSales(poss[3].getPrice() * chocolateSale);
-        poss[4].setSales(poss[4].getPrice() * waterSale);
+        poss[0].setSales(totalMilksale);
+        poss[1].setSales(totalNoodlesale);
+        poss[2].setSales(totalGumsale);
+        poss[3].setSales(totalChocolatesale);
+        poss[4].setSales(totalWatersale);
+
         System.out.println(poss[0].getSales());
         System.out.println(poss[1].getSales());
         System.out.println(poss[2].getSales());
