@@ -12,17 +12,23 @@ public class PosMenu {
 
     // 메뉴판 생성 - 배열 초기화
     public PosMenu(){
-        poss[0] = new PosDTO(1,"우유",5,4000);
-        poss[1] = new PosDTO(2,"라면",5,5000);
-        poss[2] = new PosDTO(3,"껌",5,2000);
-        poss[3] = new PosDTO(4,"초콜릿",5,2000);
-        poss[4] = new PosDTO(5,"물",5,3000);
+        poss[0] = new PosDTO(1,"우유",5,4000,0);
+        poss[1] = new PosDTO(2,"라면",5,5000,0);
+        poss[2] = new PosDTO(3,"껌",5,2000,0);
+        poss[3] = new PosDTO(4,"초콜릿",5,2000,0);
+        poss[4] = new PosDTO(5,"물",5,3000,0);
     }
     int milkSale;
     int noodleSale;
     int gumSale;
     int chocolateSale;
     int waterSale;
+
+    int totalMilksale;
+    int totalNoodlesale;
+    int totalGumsale;
+    int totalChocolatesale;
+    int totalWatersale;
 
     Scanner sc = new Scanner(System.in);
 
@@ -60,7 +66,7 @@ public class PosMenu {
                     }
                     break;
                 case 3:
-                    System.out.println(milkSale);
+                    showTheProduct();
                     break;
                 case 9:
                     System.out.println("프로그램 종료");
@@ -87,15 +93,26 @@ public class PosMenu {
         return result;
     }
 
-    public int calculateProductRevenue(){     // 물건 매출 계산
-        //먼저 위에 메소드에서 나온 스트링을 charat을 이용해서 슬라이싱을 해준다.
-        //첫번째 숫자는 char는 품목이고 두번째 숫자는 품목이 팔린 내용입니다.
-        //첫번째 숫자에 해당하는 품목의 가격을 뽑아내고
-        //두번째 숫자와 가격과 곱하기 해서 그값을 리턴해준다.
-        return 0;
+    public void calculateProductRevenue(){     // 물건 매출 계산
+        totalMilksale = poss[0].getPrice() * milkSale;
+        totalNoodlesale = poss[1].getPrice() * noodleSale;
+        totalGumsale = poss[2].getPrice() * gumSale;
+        totalChocolatesale = poss[3].getPrice() * chocolateSale;
+        totalWatersale = poss[4].getPrice() * waterSale;
     }
 
     public void showTheProduct(){      // 물건 개수 및 매출 출력
+        //setter를 이용하여 매출 계산한 값을 넣고 getter로 갖고오기
+        poss[0].setSales(poss[0].getPrice() * milkSale);
+        poss[1].setSales(poss[1].getPrice() * noodleSale);
+        poss[2].setSales(poss[2].getPrice() * gumSale);
+        poss[3].setSales(poss[3].getPrice() * chocolateSale);
+        poss[4].setSales(poss[4].getPrice() * waterSale);
+        System.out.println(poss[0].getSales());
+        System.out.println(poss[1].getSales());
+        System.out.println(poss[2].getSales());
+        System.out.println(poss[3].getSales());
+        System.out.println(poss[4].getSales());
 
     }
 

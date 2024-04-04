@@ -22,11 +22,20 @@ public class PosDTO {
     public PosDTO() {
     }
 
-    public PosDTO(int num, String name, int quantity, int price) {
+    public PosDTO(int num, String name, int quantity, int price, int sales) {
         this.num = num;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.sales = sales;
+    }
+
+    public Date getRevenueDate() {
+        return revenueDate;
+    }
+
+    public void setRevenueDate(Date revenueDate) {
+        this.revenueDate = revenueDate;
     }
 
     public int getNum() {
