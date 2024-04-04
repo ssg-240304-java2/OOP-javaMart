@@ -50,28 +50,8 @@ public class PosMenu {
                     String choicePro = sc.next(); // 12
                     System.out.print("몇 개 구매했나요 : ");
                     String quantityStr = sc.next(); //24
-                    for (int i = 0; i < choicePro.length(); i++) { // 우유 라면 (12) // 24
-                        int quantity = quantityStr.charAt(i) - '0';
-                        if(quantity<5){
-                            if (choicePro.charAt(i) == '1'){
-                                milkSale = quantity;
-                            }
-                            if(choicePro.charAt(i) == '2') {
-                                noodleSale = quantity;
-                            }
-                            if(choicePro.charAt(i) == '3') {
-                                gumSale = quantity;
-                            }
-                            if(choicePro.charAt(i) == '4') {
-                                chocolateSale = quantity;
-                            }
-                            if(choicePro.charAt(i) == '5') {
-                                waterSale = quantity;
-                            }
-                        } else{
-                            System.out.println("구매할 수량을 초과했습니다.");
-                        }
-                    }
+                    ProductSales(choicePro,quantityStr);
+
                     System.out.println(milkSale);
                     System.out.println(noodleSale);
                     System.out.println(gumSale);
@@ -107,6 +87,31 @@ public class PosMenu {
         for(int i=0; i<poss.length; i++){
             if(poss[i].getSales() != 0){
                 System.out.println("팔린 "+poss[i].getName() + "의 개수 : " + poss[i].getQuantity() + "개  해당 품목 매출 : " +poss[i].getSales() + "원");
+            }
+        }
+    }
+    public void ProductSales(String choicePro, String quantityStr) {
+        for (int i = 0; i <  choicePro.length(); i++) { // 우유 라면 (12) // 24
+            int quantity = quantityStr.charAt(i) - '0';
+            if(quantity<5) {
+                if (choicePro.charAt(i) == '1') {
+                    milkSale = quantity;
+                }
+                if (choicePro.charAt(i) == '2') {
+                    noodleSale = quantity;
+                }
+                if (choicePro.charAt(i) == '3') {
+                    gumSale = quantity;
+                }
+                if (choicePro.charAt(i) == '4') {
+                    chocolateSale = quantity;
+                }
+                if (choicePro.charAt(i) == '5') {
+                    waterSale = quantity;
+                }
+            }
+            else{
+                System.out.println("구매할 수량을 초과했습니다");
             }
         }
     }
