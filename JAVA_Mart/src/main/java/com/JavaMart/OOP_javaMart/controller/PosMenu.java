@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class PosMenu {
 
-    PosDTO posDTO = new PosDTO();
+//    PosDTO posDTO = new PosDTO(); // 이코드를 넣은 이유는 무엇인지? 없어도 잘 작동함..
     PosDTO[] poss = new PosDTO[5];      // 배열 생성 및 할당
 
-    // 메뉴판 생성 - 배열 초기화
+    // 메뉴판 생성 - 생성자를 이용 배열 초기화
     public PosMenu(){
         poss[0] = new PosDTO(1,"우유",5,4000,0);
         poss[1] = new PosDTO(2,"라면",5,5000,0);
@@ -17,21 +17,26 @@ public class PosMenu {
         poss[3] = new PosDTO(4,"초콜릿",5,2000,0);
         poss[4] = new PosDTO(5,"물",5,3000,0);
     }
+
+    // 품목별 팔린 수량
     int milkSale;
     int noodleSale;
     int gumSale;
     int chocolateSale;
     int waterSale;
 
+
+    // 품목별 총 매출
     int totalMilksale;
     int totalNoodlesale;
     int totalGumsale;
     int totalChocolatesale;
     int totalWatersale;
 
+    // 스캐너 객체 생성
     Scanner sc = new Scanner(System.in);
 
-    public void menu(){     // 메뉴
+    public void menu(){     // 포스기를 실행시키는 메소드
         while(true){
             System.out.println("-----포스기------");
             System.out.println("1.재고 출력");
@@ -47,9 +52,9 @@ public class PosMenu {
                 case 2:
                     System.out.println("1 : 우유, 2 : 라면, 3 : 껌, 4 : 초콜릿, 5 : 물");
                     System.out.print("손님이 무슨 물품을 구매했습니까 : ");
-                    String choicePro = sc.next(); // 12
+                    String choicePro = sc.next(); // 무슨 품목을 구매했는지를 입력받는다
                     System.out.print("몇 개 구매했나요 : ");
-                    String quantityStr = sc.next(); //24
+                    String quantityStr = sc.next(); // 몇개를 구매했는지를 입력받는다
                     ProductSales(choicePro,quantityStr);
 
                     System.out.println(milkSale);
@@ -95,10 +100,12 @@ public class PosMenu {
             }
         }
     }
+
+    // 재고 수정 메소드 구현
     public void ProductSales(String choicePro, String quantityStr) {
         for (int i = 0; i <  choicePro.length(); i++) {         // 우유 라면 (12) // 24
             int quantity = quantityStr.charAt(i) - '0';
-            if(quantity < 5) {
+            if(quantity < 6) {
                 if (choicePro.charAt(i) == '1') {
                     milkSale = quantity;
                     poss[0].setQuantity(poss[0].getQuantity() - milkSale);
@@ -132,7 +139,7 @@ public class PosMenu {
     }
     
 
-    public void printStorage(){       // 전체 결과 출력
+    public void printStorage(){       // 전체 품목의 매출과 수량을 출력
 
         System.out.println("🟦⬜🟦⬜🟦⬜🟦⬜JAVA_MART🟦⬜🟦⬜🟦⬜🟦⬜");
         for(int i = 0; i < poss.length; i++){
