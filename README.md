@@ -14,7 +14,10 @@ JAVA의 컬렉션(Collection)을 이용하여 만든 편의점 재고관리 프�
 - 팀원2 : 김의진(dmlwls12) - 
 - 팀원3 : 송재혁(speter6501) -
 - 팀원4 : 고유진(yujin4sth00) -
-- 팀원5 : 장윤지(elliaaa) -생성자, getter setter, to string, pos 배열 생성
+- 팀원5 : 장윤지(elliaaa) -  역할 : 생성자, getter setter, to string, pos 배열 생성
+-                           회고 : 객체 배열로 짠 로직이라 코드가 좀 복잡해 보일 수 있지만 컬렉션 복습이 제대로 끝난 후 다시 정리해서 리뷰를 해보고자 한다.
+                                   깃을 어떻게 사용해야 하는지 완전한 이해가 된 것은 아니지만 어떻게 sync fork를 하고 pull request를 하는지 이해 할 수 있는 시간이었습니다.
+                                   
 
 ### ⚙️ 개발 환경
 - ``` Java 17 ```
